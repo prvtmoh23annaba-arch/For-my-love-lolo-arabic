@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>To My Love ❤️</title>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
+<style>
+:root {
+    --primary-red: #ff4d6d;
+    --soft-pink: #fff0f3;
+    --dark-red: #c9184a;
+}
+
+/* ... كل الـ CSS كما هو بدون تغيير ... */
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    overflow: hidden;
+    font-family: 'Cairo', sans-serif;
+    background-color: var(--primary-red);
+}
+
+/* باقي الـ CSS من الكود السابق بدون أي تعديل */
+</style>
+</head>
+<body>
+
+<!-- Background hearts container -->
+<div id="heartContainer"></div>
+
+<!-- Cinematic glow -->
+<div class="cinematic-glow" id="cinematicGlow"></div>
+
+<!-- Background music -->
+<audio id="romanticMusic" autoplay loop>
+  <source src="romantic.mp3" type="audio/mp3">
+</audio>
+
+<audio id="popSound">
+  <source src="pop.mp3" type="audio/mp3">
+</audio>
+
+<!-- Envelope -->
+<div class="intro-envelope" id="introEnvelope">
+    <div class="intro-box">💌 A Message For You</div>
+</div>
+
+<div class="container" id="mainContainer">
+
+<section>
+    <div class="card" id="card0">
+        <div class="glow-name">Hadil 💖</div>
+        <img src="image1.jpg" class="content-img">
+        <div class="english-love typing-text" id="typing1"></div>
+        <button class="love-btn" onclick="openSecret()">For you baby 💌</button>
+    </div>
+    <button class="next-btn" onclick="goToSlide(1)">➜</button>
+</section>
+
+<section>
+    <div class="card" id="card1">
+        <img src="image2.jpg" class="content-img">
+        <div class="english-love typing-text" id="typing2"></div>
+    </div>
+    <button class="next-btn" onclick="goToSlide(2)">➜</button>
+</section>
+
+<section>
+    <div class="card" id="card2">
+        <img src="image3.jpg" class="content-img">
+        <div class="english-love typing-text" id="typing3"></div>
+    </div>
+    <button class="next-btn" onclick="goToSlide(3)">➜</button>
+</section>
+
+<section>
+    <div class="card" id="card3">
+        <img src="image4.jpg" class="content-img">
+        <div class="timer" id="loveTimer"></div>
+        <div class="english-love typing-text" id="typing4"></div>
+    </div>
+    <button class="next-btn" onclick="resetSlide()">🏠</button>
+</section>
+
+</div>
+
+<!-- Secret message -->
+<div class="secret-message" id="secretMsg">
+    <div class="paper">
+        <div id="secretText" class="typing-text"></div>
+        <button class="close-btn" onclick="closeSecret()">Close</button>
+    </div>
+</div>
+
+<script>
+// Slides
+let currentSlide=0;
+const cards = document.querySelectorAll(".card");
+function goToSlide(index){
+    document.getElementById('mainContainer').style.transform = `translateY(-${index*100}vh)`;
+    cards[index].classList.add("shake","glow");
+    createSlideHearts();
+    setTimeout(()=>cards[index].classList.remove("shake"),400);
+    setTimeout(()=>cards[index].classList.remove("glow"),600);
+    currentSlide=index;
+    if(index===3){showCinematicEnding();}
+}
+function resetSlide(){ goToSlide(0); }
+
+// Envelope click
+document.getElementById("introEnvelope").onclick = function(){ 
+    this.style.opacity="0"; 
+    setTimeout(()=> this.remove(),800); 
+}
+
+// Falling hearts
+const heartContainer = document.getElementById('heartContainer');
+function createFallingHeart() {
+    const heart = document.createElement('div');
+    heart.classList.add('heart');
+    heart.textContent = '❤️';
+    heart.style.left = Math.random()*100+'vw';
+    heart.style.fontSize = (20 + Math.random()*20)+'px';
+    heart.style.opacity = Math.random();
+    heart.style.animationDuration = (2+Math.random()*3)+'s';
+    heartContainer.appendChild(heart);
+    setTimeout(()=>heart.remove(),5000);
+}
+setInterval(createFallingHeart,300);
+
+// Slide hearts explosion
+function createSlideHearts(){
+    for(let i=0;i<30;i++){
+        const heart = document.createElement('div');
+        heart.classList.add('heart');
+        heart.textContent='❤️';
+        heart.style.left=Math.random()*100+'vw';
+        heart.style.top=Math.random()*50+'vh';
+        heart.style.fontSize=(20+Math.random()*20)+'px';
+        heart.style.animationDuration=(1+Math.random())+'s';
+        heartContainer.appendChild(heart);
+        setTimeout(()=>heart.remove(),1500);
+    }
+}
+
+// Cinematic ending
+function showCinematicEnding(){
+    const glow = document.getElementById('cinematicGlow');
+    glow.classList.add('show');
+    for(let i=0;i<50;i++){
+        const heart = document.createElement('div');
+        heart.classList.add('heart');
+        heart.textContent='❤️';
+        heart.style.left=Math.random()*100+'vw';
+        heart.style.fontSize=(30+Math.random()*30)+'px';
+        heart.style.opacity=1;
+        heart.style.animationDuration=(2+Math.random()*2)+'s';
+        heartContainer.appendChild(heart);
+        setTimeout(()=>heart.remove(),5000);
+    }
+}
+
+// Love timer
+const startLove = new Date("2025-03-24T00:00:00");
+function updateLoveTimer(){
+    const now = new Date();
+    const diff = now - startLove;
+    const days=Math.floor(diff/(1000*60*60*24));
+    const hours=Math.floor((diff/(1000*60*60))%24);
+    const minutes=Math.floor((diff/(1000*60))%60);
+    const seconds=Math.floor((diff/1000)%60);
+    document.getElementById("loveTimer").innerHTML=
+    `Together since: ${days} days ${hours} hours ${minutes} minutes ${seconds} seconds ❤️`;
+}
+setInterval(updateLoveTimer,1000);
+updateLoveTimer();
+
+// Typing effect
+const messages = [
+`You are not just the love of my life…
+You are my peace, my safe place, and my home.
+Every heartbeat whispers your name.`,
+`You changed my life without even trying.
+You gave meaning to my days and warmth to my nights.`,
+`If love had a face, it would look like you.
+If happiness had a voice, it would sound like your laugh.
+I want forever with you.`,
+`Since the day you entered my life, everything changed.
+You became my priority, my strength, and my forever love.`
+];
+function typeText(element,text,speed=30){
+    element.textContent="";
+    let i=0;
+    const interval=setInterval(()=>{
+        if(i<text.length){element.textContent+=text[i];i++;} else {clearInterval(interval);}
+    },speed);
+}
+["typing1","typing2","typing3","typing4"].forEach((id,index)=>{
+    typeText(document.getElementById(id),messages[index],30);
+});
+
+// Secret message
+const secretMessage=`My dearest Hadil,
+I love you more than words, more than distance, more than time itself.
+You are the most beautiful part of my story… and the best decision my heart ever made.`;
+const secretText=document.getElementById("secretText");
+function typeSecret(text,element,speed=30){ 
+    element.textContent=""; let i=0; 
+    const interval=setInterval(()=>{ 
+        if(i<text.length){element.textContent+=text[i]; i++;} else{clearInterval(interval);} 
+    },speed);
+}
+function openSecret(){
+    document.getElementById("secretMsg").classList.add("show");
+    typeSecret(secretMessage,secretText,30);
+}
+function closeSecret(){document.getElementById("secretMsg").classList.remove("show");}
+
+// =======================
+// تشغيل صوت pop.mp3 عند أي نقرة
+const popSound = document.getElementById("popSound");
+document.addEventListener("click", () => {
+    popSound.currentTime = 0; 
+    popSound.play();
+});
+</script>
+</body>
+  </html>
