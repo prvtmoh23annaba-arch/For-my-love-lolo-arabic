@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
+<html lang="ar" dir="rtl">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>To My Love ❤️</title>
+<title>إلى حبيبتي ❤️</title>
 <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
 <style>
 :root {
@@ -12,7 +12,6 @@
     --dark-red: #c9184a;
 }
 
-/* ... كل الـ CSS كما هو بدون تغيير ... */
 body, html {
     margin: 0;
     padding: 0;
@@ -22,7 +21,228 @@ body, html {
     background-color: var(--primary-red);
 }
 
-/* باقي الـ CSS من الكود السابق بدون أي تعديل */
+/* Starting envelope */
+.intro-envelope{
+    position:fixed;
+    inset:0;
+    background:linear-gradient(135deg,#ff4d6d,#c9184a);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    z-index:9999;
+    cursor:pointer;
+}
+.intro-box{
+    width:260px;
+    height:180px;
+    background:white;
+    border-radius:12px;
+    box-shadow:0 15px 40px rgba(0,0,0,.4);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-size:22px;
+    color:#c9184a;
+    font-weight:bold;
+}
+
+/* Container */
+.container {
+    height: 100vh;
+    width: 100vw;
+    transition: transform 0.8s cubic-bezier(0.645, 0.045, 0.355, 1);
+}
+
+section {
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    background-size: cover;
+    background-position: center;
+}
+
+/* Cards */
+.card {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border-radius: 20px;
+    padding: 20px;
+    text-align: center;
+    max-width: 90%;
+    width: 500px;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+    animation: pop 1s ease;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+@keyframes pop{
+    0%{transform:scale(.7);opacity:0}
+    100%{transform:scale(1);opacity:1}
+}
+
+.card.glow {
+    box-shadow: 0 0 30px 5px #fff,0 0 40px 10px #ff4d6d,0 0 50px 15px #ff4d6d;
+    transform: scale(1.05);
+}
+
+.card.shake {
+    animation: shake 0.4s;
+}
+
+@keyframes shake{
+    0%{transform:translateX(0);}
+    25%{transform:translateX(-10px);}
+    50%{transform:translateX(10px);}
+    75%{transform:translateX(-10px);}
+    100%{transform:translateX(0);}
+}
+
+img.content-img {
+    max-width: 100%;
+    border-radius: 15px;
+}
+
+/* Fixed Next/Home Button */
+#mainBtn {
+    position: fixed;
+    bottom: 40px;
+    right: 40px;
+    background: white;
+    color: var(--primary-red);
+    border: none;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    font-size: 24px;
+    cursor: pointer;
+    z-index: 10000;
+}
+
+/* Falling hearts */
+#heartContainer {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    pointer-events: none;
+    z-index: 1000;
+}
+.heart {
+    position: absolute;
+    font-size: 24px;
+    color: #fff;
+    top: -50px;
+    animation-name: fall;
+    animation-timing-function: linear;
+    pointer-events: none;
+}
+@keyframes fall {
+    0% { transform: translateY(-50px); }
+    100% { transform: translateY(100vh); }
+}
+
+/* Typing text */
+.english-love.typing-text{
+    border-right: .1em solid #fff;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    overflow: hidden;
+    display: inline-block;
+    max-width: 100%;
+    text-align: center;
+    margin: 15px auto 0 auto;
+    line-height: 1.8;
+    font-size: 18px;
+    font-family: 'Dancing Script', cursive;
+}
+
+/* Timer */
+.timer{
+    font-size:20px;
+    margin-top:10px;
+    color:white;
+}
+
+/* Glowing name */
+.glow-name{
+    font-family:'Dancing Script', cursive;
+    font-size:36px;
+    color:#fff;
+    text-shadow: 0 0 5px #fff,0 0 10px #ff4d6d,0 0 20px #ff4d6d,0 0 30px #ff4d6d;
+    animation: glow 1.5s infinite alternate;
+    margin-bottom:15px;
+}
+@keyframes glow{
+    from { text-shadow: 0 0 5px #fff,0 0 10px #ff4d6d,0 0 20px #ff4d6d,0 0 30px #ff4d6d; }
+    to { text-shadow: 0 0 10px #fff,0 0 20px #ff4d6d,0 0 30px #ff4d6d,0 0 40px #ff4d6d; }
+}
+
+/* Secret paper */
+.secret-message{
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,0.7);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    opacity:0;
+    pointer-events:none;
+    transition: 0.5s;
+    z-index:999;
+}
+.secret-message.show{
+    opacity:1;
+    pointer-events:auto;
+}
+.secret-message .paper {
+    position: relative;
+    background: #fff8e7;
+    padding: 40px 30px;
+    width: 80%;
+    max-width: 600px;
+    border-radius: 15px;
+    box-shadow: 0 15px 40px rgba(0,0,0,0.4);
+    font-family: 'Dancing Script', cursive;
+    color: #000;
+    font-size: 20px;
+    line-height: 1.8;
+    overflow: hidden;
+}
+.secret-message .paper::before,
+.secret-message .paper::after {
+    content: '❤️ ❤️ ❤️ ❤️ ❤️';
+    position: absolute;
+    left: 10px;
+    right: 10px;
+    font-size: 18px;
+    text-align:center;
+}
+.secret-message .paper::before { top:10px; }
+.secret-message .paper::after { bottom:10px; }
+.secret-message .close-btn{
+    margin-top:25px;
+    background: var(--primary-red);
+    color:white;
+    border:none;
+    padding:12px 25px;
+    border-radius:25px;
+    font-size:16px;
+    cursor:pointer;
+}
+
+/* Cinematic ending glow */
+.cinematic-glow{
+    position: fixed;
+    inset:0;
+    pointer-events: none;
+    z-index:998;
+    background: radial-gradient(circle, rgba(255,255,255,0.15), transparent 70%);
+    opacity:0;
+    transition:0.5s;
+}
+.cinematic-glow.show{opacity:1;}
 </style>
 </head>
 <body>
@@ -38,25 +258,20 @@ body, html {
   <source src="romantic.mp3" type="audio/mp3">
 </audio>
 
-<audio id="popSound">
-  <source src="pop.mp3" type="audio/mp3">
-</audio>
-
 <!-- Envelope -->
 <div class="intro-envelope" id="introEnvelope">
-    <div class="intro-box">💌 A Message For You</div>
+    <div class="intro-box">💌 رسالة حب لكِ</div>
 </div>
 
 <div class="container" id="mainContainer">
 
 <section>
     <div class="card" id="card0">
-        <div class="glow-name">Hadil 💖</div>
+        <div class="glow-name">هديل 💖</div>
         <img src="image1.jpg" class="content-img">
         <div class="english-love typing-text" id="typing1"></div>
-        <button class="love-btn" onclick="openSecret()">For you baby 💌</button>
+        <button class="love-btn" onclick="openSecret()">لك وحدكِ 💌</button>
     </div>
-    <button class="next-btn" onclick="goToSlide(1)">➜</button>
 </section>
 
 <section>
@@ -64,7 +279,6 @@ body, html {
         <img src="image2.jpg" class="content-img">
         <div class="english-love typing-text" id="typing2"></div>
     </div>
-    <button class="next-btn" onclick="goToSlide(2)">➜</button>
 </section>
 
 <section>
@@ -72,7 +286,6 @@ body, html {
         <img src="image3.jpg" class="content-img">
         <div class="english-love typing-text" id="typing3"></div>
     </div>
-    <button class="next-btn" onclick="goToSlide(3)">➜</button>
 </section>
 
 <section>
@@ -81,16 +294,18 @@ body, html {
         <div class="timer" id="loveTimer"></div>
         <div class="english-love typing-text" id="typing4"></div>
     </div>
-    <button class="next-btn" onclick="resetSlide()">🏠</button>
 </section>
 
 </div>
+
+<!-- Fixed Next/Home Button -->
+<button id="mainBtn" onclick="handleMainBtn()">➜</button>
 
 <!-- Secret message -->
 <div class="secret-message" id="secretMsg">
     <div class="paper">
         <div id="secretText" class="typing-text"></div>
-        <button class="close-btn" onclick="closeSecret()">Close</button>
+        <button class="close-btn" onclick="closeSecret()">إغلاق</button>
     </div>
 </div>
 
@@ -98,6 +313,8 @@ body, html {
 // Slides
 let currentSlide=0;
 const cards = document.querySelectorAll(".card");
+const mainBtn = document.getElementById("mainBtn");
+
 function goToSlide(index){
     document.getElementById('mainContainer').style.transform = `translateY(-${index*100}vh)`;
     cards[index].classList.add("shake","glow");
@@ -105,9 +322,25 @@ function goToSlide(index){
     setTimeout(()=>cards[index].classList.remove("shake"),400);
     setTimeout(()=>cards[index].classList.remove("glow"),600);
     currentSlide=index;
+    updateMainBtn();
     if(index===3){showCinematicEnding();}
 }
-function resetSlide(){ goToSlide(0); }
+
+function updateMainBtn(){
+    if(currentSlide===3){
+        mainBtn.textContent="🏠";
+    } else {
+        mainBtn.textContent="➜";
+    }
+}
+
+function handleMainBtn(){
+    if(currentSlide<3){
+        goToSlide(currentSlide+1);
+    } else {
+        goToSlide(0);
+    }
+}
 
 // Envelope click
 document.getElementById("introEnvelope").onclick = function(){ 
@@ -172,23 +405,23 @@ function updateLoveTimer(){
     const minutes=Math.floor((diff/(1000*60))%60);
     const seconds=Math.floor((diff/1000)%60);
     document.getElementById("loveTimer").innerHTML=
-    `Together since: ${days} days ${hours} hours ${minutes} minutes ${seconds} seconds ❤️`;
+    `معًا منذ: ${days} يومًا ${hours} ساعة ${minutes} دقيقة ${seconds} ثانية ❤️`;
 }
 setInterval(updateLoveTimer,1000);
 updateLoveTimer();
 
 // Typing effect
 const messages = [
-`You are not just the love of my life…
-You are my peace, my safe place, and my home.
-Every heartbeat whispers your name.`,
-`You changed my life without even trying.
-You gave meaning to my days and warmth to my nights.`,
-`If love had a face, it would look like you.
-If happiness had a voice, it would sound like your laugh.
-I want forever with you.`,
-`Since the day you entered my life, everything changed.
-You became my priority, my strength, and my forever love.`
+`أنتِ لستِ مجرد حب حياتي…
+أنتِ سكينتي، مكاني الآمن وبيتي الدافئ.
+كل نبضة قلب تهمس باسمكِ.`,
+`لقد غيرتِ حياتي دون أي مجهود.
+أضأتِ أيامي وأعطيتِ لي دفء الليالي.`,
+`لو للحب وجه، لكان وجهكِ.
+ولو للسعادة صوت، لكان ضحكتكِ.
+أريد أن يكون "إلى الأبد" معنا.`,
+`منذ أن دخلتِ حياتي، تغير كل شيء.
+أصبحتِ أولويتي، قوتي، وحبّي الأبدي.`
 ];
 function typeText(element,text,speed=30){
     element.textContent="";
@@ -202,9 +435,10 @@ function typeText(element,text,speed=30){
 });
 
 // Secret message
-const secretMessage=`My dearest Hadil,
-I love you more than words, more than distance, more than time itself.
-You are the most beautiful part of my story… and the best decision my heart ever made.`;
+const secretMessage=`حبيبتي هديل الغالية،
+أحبك أكثر من الكلمات، أكثر من المسافات، أكثر من الوقت نفسه.
+أنتِ أجمل فصل في قصتي… وأفضل قرار اتخذه قلبي على الإطلاق.
+عيد حب سعيد يا أميرة قلبي 💖`;
 const secretText=document.getElementById("secretText");
 function typeSecret(text,element,speed=30){ 
     element.textContent=""; let i=0; 
@@ -217,14 +451,6 @@ function openSecret(){
     typeSecret(secretMessage,secretText,30);
 }
 function closeSecret(){document.getElementById("secretMsg").classList.remove("show");}
-
-// =======================
-// تشغيل صوت pop.mp3 عند أي نقرة
-const popSound = document.getElementById("popSound");
-document.addEventListener("click", () => {
-    popSound.currentTime = 0; 
-    popSound.play();
-});
 </script>
 </body>
-  </html>
+    </html>
